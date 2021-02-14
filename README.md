@@ -16,3 +16,8 @@ Only steps through 256 bytes.
 Byte to ASCII hex code needs putting in a subroutine.
 Weird sh&t going on with the X register - had to paste display code in before infinite loop otherwise x was not reset to 0, why this makes any difference beats me.
 The ASCII offset for converting hex numbers A-F is mad - should be #41 not #30. Why? WHY DOES #41 WORK? IT MAKES NO SENSE.
+
+## monitor2
+Slightly less dreadful.
+Folds hex>ascii conversion into subroutines.
+Displays x register - for some reason this fixes bug displaying MSN as 'G0' instead of '00' - no idea why, this makes no sense.
