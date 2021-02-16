@@ -8,7 +8,6 @@ DDRA = $6003
 PCR = $600c		; peripheral control register
 IFR = $600d		; interrupt flag register
 IER = $600e		; interrupt enable register
-; address_counter = $0200 ; 2 byte counter to keep track of address being shown
 
 E  = %10000000
 RW = %01000000
@@ -40,64 +39,16 @@ reset:
   lda #%00000001 ; Clear display
   jsr lcd_instruction
   
-  ldx #0
+  ldx #$0
 print:
   lda splash,x
   beq end_print
   jsr print_char
   inx
   jmp print
-  
-;  lda #$00		; store starting address in address_counter
-;  sta address_counter
-;  lda #$80
-;  sta address_counter + 1
 
 end_print:
-  ldx #0	; reset x to zero as used for address counter
-  
-  
-; debug-----------
-;  lda #%00000001 ; Clear display - should replace with 010 home
-;  jsr lcd_instruction
-;  lda #"8"
-;  jsr print_char
-;  lda #"0"
-;  jsr print_char
-  
-;  txa
-;  and #%11110000
-;  ror
-;  ror
-;  ror
-;  ror
-;  cmp #10
-;  bcc ascc
-;  adc #$36 			; add offset for letters, no idea why it's 36
-;  jmp print_ascc
-;ascc:
-;  adc #$30 			; add offset for numbers 
-;print_ascc:
-;  jsr print_char  
-;
-;  txa
-;  and #%00001111
-;  cmp #10
-;  bcc ascd
-;  adc #$36 			; add offset for letters, no idea why it's 36
-;  jmp print_ascd
-;ascd:
-;  adc #$30 			; add offset for numbers 
-;print_ascd:
-;  jsr print_char  
-;  
-;  lda #" "
-;  jsr print_char
-;  
-;  lda $8000,x
-;  jsr print_char
-;  inx
-; debug-------
+  ldy #$0	; reset y to zero as used for address counter
   
 loop:
   jmp loop
@@ -145,7 +96,7 @@ print_char:
   lda #RS         ; Clear E bits
   sta PORTA
   rts
-  
+
 hex_ascii_hi:		; return ascii character of most significant nibble
   and #%11110000
   ror
@@ -174,11 +125,7 @@ nmi:
   rti
   
 irq:
-;  inc address_counter
-;  bne update
-;  inc address_counter + 1
-;update
-  lda #%00000010 ; Clear display - should replace with 010 home
+  lda #%00000010 ; put LCD cursor at home position
   jsr lcd_instruction
   lda #"8"
   jsr print_char
@@ -186,41 +133,34 @@ irq:
   jsr print_char
   
 ; convert index from hex to ascii to display address  
-  txa
+  tya
   jsr hex_ascii_hi
   jsr print_char  
-  txa
+  tya
   jsr hex_ascii_lo
   jsr print_char  
   
 ; display hex value at address
   lda #" "
   jsr print_char 
-  lda $8000,x
+  lda $8000,y
   jsr hex_ascii_hi
   jsr print_char  
-  lda $8000,x
+  lda $8000,y
   jsr hex_ascii_lo
   jsr print_char  
 
 ; display ascii equivalent
   lda #" "
   jsr print_char
-  lda $8000,x
+  lda $8000,y
   jsr print_char
 
-; display x register - for some reason this fixes bug displaying MSN as 'G0' instead of '00'
-  lda #" "
-  jsr print_char
-  txa
-  jsr hex_ascii_lo
-  jsr print_char
-
-  inx
+  iny
+  bit PORTA				; clear interrupt by reading PORTA
   rti
 
   .org $fffa
   .word nmi
   .word reset
   .word irq
-  
