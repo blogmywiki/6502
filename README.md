@@ -3,6 +3,11 @@ A place to keep my 6502 breadboard computer assembler programs
 
 Based on the work of Ben Eater https://eater.net/6502
 
+Assembly language .s files are assembled using vasm in 6502 'oldstyle' mode, eg 
+`./vasm6502_oldstyle -Fbin -dotdir monitor2.s `
+Flashed to EEPROM using minipro:
+`minipro -p AT28C256 -w a.out`
+
 ## hello world
 Prints text to LCD display using RAM for stack pointer and VIA to interface with LCD
 
