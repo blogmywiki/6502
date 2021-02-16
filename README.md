@@ -20,4 +20,4 @@ The ASCII offset for converting hex numbers A-F is mad - should be #41 not #30. 
 ## monitor2
 Slightly less dreadful.
 Folds hex>ascii conversion into subroutines.
-Displays x register - for some reason this fixes bug displaying MSN as 'G0' instead of '00' - no idea why, this makes no sense.
+.out file is raw binary for flashing to EEPROM.
