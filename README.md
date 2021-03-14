@@ -26,3 +26,7 @@ The ASCII offset for converting hex numbers A-F is mad - should be #41 not #30. 
 Slightly less dreadful.
 Folds hex>ascii conversion into subroutines.
 .out file is raw binary for flashing to EEPROM.
+
+## hex-b-2.s
+Test program to type characters on the LCD display from a 4x4 matrix keypad attached via a 74C922 encoder chip.
+More info here: http://www.suppertime.co.uk/blogmywiki/2021/03/6502-breadboard-computer-part-5-hex-keypad/
