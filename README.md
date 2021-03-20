@@ -30,3 +30,7 @@ Folds hex>ascii conversion into subroutines.
 ## hex-b-2.s
 Test program to type characters on the LCD display from a 4x4 matrix keypad attached via a 74C922 encoder chip.
 More info here: http://www.suppertime.co.uk/blogmywiki/2021/03/6502-breadboard-computer-part-5-hex-keypad/
+
+## hex-shift-demo.s
+Demo of shift key wired via pull-down resistor to 6522 pin PA4. Shift-D steps forwards in memory, shift-C steps back.
+More info here: http://www.suppertime.co.uk/blogmywiki/2021/03/6502-breadboard-computer-part-6-shift-key/
