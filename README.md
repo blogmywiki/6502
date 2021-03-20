@@ -41,4 +41,4 @@ First working monitor program.
 - step forwards with shift-D, back with shift-C
 - enter opcodes data directly with keypad
 - run program with shift-A, always starts at $0300
-
+- press reset button on CPU to drop back into the monitor
