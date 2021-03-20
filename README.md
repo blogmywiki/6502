@@ -34,3 +34,11 @@ More info here: http://www.suppertime.co.uk/blogmywiki/2021/03/6502-breadboard-c
 ## hex-shift-demo.s
 Demo of shift key wired via pull-down resistor to 6522 pin PA4. Shift-D steps forwards in memory, shift-C steps back.
 More info here: http://www.suppertime.co.uk/blogmywiki/2021/03/6502-breadboard-computer-part-6-shift-key/
+
+## monitor3.s
+First working monitor program.
+- Programs must be 256 bytes or less and reside at $0300
+- step forwards with shift-D, back with shift-C
+- enter opcodes data directly with keypad
+- run program with shift-A, always starts at $0300
+
