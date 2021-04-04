@@ -1,12 +1,16 @@
 # 6502
-A place to keep my 6502 breadboard computer assembler programs
+A place to keep my 6502 breadboard computer assembler programs.
 
-Based on the work of Ben Eater https://eater.net/6502
+My current computer is a bit like a Kim-1 or Acorn System 1 single board computer with a hex keypad for entering machine code programs. Its design is based on the work of Ben Eater https://eater.net/6502 up to but not including the part where he adds a physical button. Instead I added a shift key and a hex keypad with an encoder chip. Read my blog for more information: http://www.suppertime.co.uk/blogmywiki/2021/03/6502-breadboard-computer-part-5-hex-keypad/
+
+I've written a user manual for this computer as if it had been produced in 1979 rather than 2021 - see 'micron 1 manual.pdf'.
 
 Assembly language .s files are assembled using vasm in 6502 'oldstyle' mode, eg 
 `./vasm6502_oldstyle -Fbin -dotdir monitor2.s `
 Flashed to EEPROM using minipro:
 `minipro -p AT28C256 -w a.out`
+
+
 
 ## hello world
 Prints text to LCD display using RAM for stack pointer and VIA to interface with LCD
